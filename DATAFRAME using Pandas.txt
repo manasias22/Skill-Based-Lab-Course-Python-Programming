@@ -1,0 +1,31 @@
+EXP 11:PROGRAM TO DEMONSTRATE DATAFRAME CREATION AND MANUPULATION USING PANDAS.
+CODE:
+# importing pandas module
+import pandas as pd
+
+# making data frame
+data = pd.read_csv("https://media.geeksforgeeks.org/wp-content/uploads/nba.csv")
+
+# number of rows to return
+n =9
+
+# creating series
+series = data["Name"]
+
+# returning top n rows
+top = series.head(n = n)
+
+# display
+print(top)
+
+OUTPUT:
+0    Avery Bradley
+1      Jae Crowder
+2     John Holland
+3      R.J. Hunter
+4    Jonas Jerebko
+5     Amir Johnson
+6    Jordan Mickey
+7     Kelly Olynyk
+8     Terry Rozier
+Name: Name, dtype: object

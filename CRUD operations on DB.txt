@@ -1,0 +1,161 @@
+Aim: Program to demonstrate CRUD (create, read, update and delete) operations on database (SQLite/ MySQL) using python
+
+1)Create 
+
+CODE:
+import mysql.connector
+
+conn = mysql.connector.connect(
+   user='root', password='vcetCOMPS', host='127.0.0.1', database='employee_db')
+
+cursor = conn.cursor()
+
+str1="insert into emptab(eno, ename, salary) values(1, 'ABC', 1000)"
+str2="insert into emptab(eno, ename, salary) values(2, 'PQR', 2000)"
+str3="insert into emptab(eno, ename, salary) values(3, 'XYZ', 3000)"
+
+try: 
+    cursor.execute(str1)  
+    cursor.execute(str2)
+    cursor.execute(str3)
+    conn.commit()    
+except:
+    conn.rollback()  
+
+cursor.execute("select * from emptab")
+
+rows=cursor.fetchall()
+print('Total number of rows =', cursor.rowcount)
+for row in rows:
+    print(row)
+
+cursor.close()
+conn.close()
+
+OUTPUT:
+(1, 'ABC', 1000)
+(2, 'PQR', 2000)
+(3, 'XYZ', 3000)
+Total number of rows = 3
+
+2)Display
+
+CODE:
+import mysql.connector
+
+conn = mysql.connector.connect(
+   user='root', password='vcetCOMPS', host='127.0.0.1', database='employee_db')
+
+cursor = conn.cursor()
+
+cursor.execute("select * from emptab")
+
+row=cursor.fetchone()
+
+while row is not None:
+     print(row)
+     row=cursor.fetchone()
+
+cursor.close()
+conn.close()
+
+OUTPUT:
+(1, 'ABC', 1000)
+(2, 'PQR', 2000)
+(3, 'XYZ', 3000)
+
++-----+-------+--------+
+| eno | ename | salary |
++-----+-------+--------+
+|   1 | ABC   |   1000 |
+|   2 | PQR   |   2000 |
+|   3 | XYZ   |   3000 |
++-----+-------+--------+
+
+3)Update
+
+CODE:
+import mysql.connector
+
+def update_rows(eno):
+    conn = mysql.connector.connect(
+        user='root', password='vcetCOMPS', host='127.0.0.1', database='employee_db')
+
+    cursor = conn.cursor()
+
+    str="update emptab set salary=salary+1000 where eno ='%d' "
+    args=(eno)
+    try: 
+       cursor.execute(str % args) 
+       conn.commit()  
+    except:
+       conn.rollback() 
+    finally:
+        cursor.execute("select * from emptab")
+
+        rows=cursor.fetchall()
+        print('Total number of rows =', cursor.rowcount)
+        for row in rows:
+             print(row)
+        cursor.close()
+        conn.close()
+
+x=int(input('Enter eno: '))
+update_rows(x)
+
+OUTPUT:
+Enter eno: 1
+Total number of rows = 3
+(1, 'ABC', 2000)
+(2, 'PQR', 2000)
+(3, 'XYZ', 3000)
+
++-----+-------+--------+
+| eno | ename | salary |
++-----+-------+--------+
+|   1 | ABC   |   1000 |
+|   2 | PQR   |   2000 |
+|   3 | XYZ   |   3000 |
++-----+-------+--------+
+
+4)Delete
+
+CODE:
+import mysql.connector
+
+def delete_rows(eno):
+    conn = mysql.connector.connect(
+        user='root', password='vcetCOMPS', host='127.0.0.1', database='employee_db')
+
+    cursor = conn.cursor()
+
+    str="delete from emptab where eno ='%d' "
+    args=(eno)
+    try: 
+       cursor.execute(str % args) 
+       conn.commit()   
+    except:
+       conn.rollback() 
+    finally:
+    
+        cursor.execute("select * from emptab")
+        rows=cursor.fetchall()
+        print('Total number of rows =', cursor.rowcount)
+        for row in rows:
+             print(row)
+        cursor.close()
+        conn.close()
+
+x=int(input('Enter eno: '))
+delete_rows(x)
+
+OUTPUT:
+
+Enter eno: 2
+Total number of rows = 2
+(1, 'ABC', 1000)
+(3, 'XYZ', 3000)
+
+
+
+

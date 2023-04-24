@@ -1,0 +1,115 @@
+EXP10: PROGRAM TO MANIPULATE ARRAYS USING NUMPY
+
+# Python program to demonstrate
+# basic array characteristics
+import numpy as np
+
+# Creating array object
+arr = np.array( [[ 0, 2, 3],[ 4, 0, 5],
+	         [ 4, 2, 0]] )
+                
+print("Shape of array: ", arr.shape) 
+
+# Printing type of arr object
+print("Array is of type: ", type(arr))
+
+# Printing array dimensions (axes)
+print("No. of dimensions: ", arr.ndim)
+
+# Printing shape of array
+print("Shape of array: ", arr.shape)
+
+# Printing size (total number of elements) of array
+print("Size of array: ", arr.size)
+
+# Printing type of elements in array
+print("Array stores elements of type: ", arr.dtype)
+
+print("===================================================")
+
+#===================================================
+
+# matrix multiplication
+
+mat1 = np.array([[1, 2],
+		 [3, 4]])
+mat2 = np.array([[4, 3],
+		 [2, 1]])
+
+print (f"mat1 * mat2={mat1.dot(mat2)}\n" )
+
+#===================================================
+print("===================================================")
+
+# matrix addition
+
+in_arr1 = np.array([[2, -7, 5], [-6, 2, 0]])
+in_arr2 = np.array([[5, 8, -5], [3, 6, 9]])
+
+print ("1st Input array : ", in_arr1)
+print ("2nd Input array : ", in_arr2)
+
+out_arr = np.add(in_arr1, in_arr2)
+print ("output added array : ", out_arr)
+
+#===================================================
+print("===================================================")
+
+
+#matrix subtraction
+
+
+in_arr1 = np.array([[2, -4, 5], [-6, 2, 0]])
+in_arr2 = np.array([[0, -7, 5], [5, -2, 9]])
+
+print ("1st Input array : ", in_arr1)
+print ("2nd Input array : ", in_arr2)
+
+
+out_arr = np.subtract(in_arr1, in_arr2)
+print ("Output array: ", out_arr)
+
+#===================================================
+print("===================================================")
+
+# make matrix with numpy
+gfg = np.matrix('[4, 1, 9; 12, 3, 1; 4, 5, 6]')
+			
+# applying matrix.transpose() method
+geek = gfg.transpose()
+	
+print(geek)
+
+
+
+OUTPUT:-
+
+Shape of array:  (3, 3)
+Array is of type:  <class 'numpy.ndarray'>
+No. of dimensions:  2
+Shape of array:  (3, 3)
+Size of array:  9
+Array stores elements of type:  int32
+===================================================
+mat1 * mat2=[[ 8  5]
+ [20 13]]
+
+===================================================
+1st Input array :  [[ 2 -7  5]
+ [-6  2  0]]
+2nd Input array :  [[ 5  8 -5]
+ [ 3  6  9]]
+output added array :  [[ 7  1  0]
+ [-3  8  9]]
+===================================================
+1st Input array :  [[ 2 -4  5]
+ [-6  2  0]]
+2nd Input array :  [[ 0 -7  5]
+ [ 5 -2  9]]
+Output array:  [[  2   3   0]
+ [-11   4  -9]]
+===================================================
+[[ 4 12  4]
+ [ 1  3  5]
+ [ 9  1  6]]
+

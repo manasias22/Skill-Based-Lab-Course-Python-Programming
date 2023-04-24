@@ -1,0 +1,101 @@
+EXP9: INFORMATION EXCHANGE BETWEEN SERVER AND CLIENT
+
+CODE:
+#Message.bin
+Hello Brother
+
+#server.py
+import socket
+
+with open('message.bin','wb') as f:
+	mes=input('Enter Message: ')
+	mes= mes.encode()
+	f.write(mes)
+
+# take the server name and port name
+host = 'local host'
+port = 5000
+  
+# create a socket at server side
+# using TCP / IP protocol
+s = socket.socket(socket.AF_INET,
+                  socket.SOCK_STREAM)
+  
+# bind the socket with server
+# and port number
+s.bind(('', port))
+  
+# allow maximum 1 connection to
+# the socket
+s.listen(1)
+  
+# wait till a client accept
+# connection
+c, addr = s.accept()
+  
+# display client address
+print("CONNECTION FROM:", str(addr))
+  
+# accept file name from client
+fname=c.recv(1024)
+
+#convert the file name into a normal string
+fname=str(fname.decode())
+print('File name received from the client'+fname)
+try:
+   f=open(fname, 'rb')
+   content=f.read()
+   c.send(content)
+   print('File content sent to the client')
+   f.close()
+except FileNotFoundError:
+   c.send('File does not exist')
+   c.close()
+
+ 
+
+#client.py
+import socket
+  
+# take the server name and port name
+  
+host = 'local host'
+port = 5000
+  
+# create a socket at client side
+# using TCP / IP protocol
+s = socket.socket(socket.AF_INET,
+                  socket.SOCK_STREAM)
+  
+# connect it to server and port
+# number on local computer.
+s.connect(('127.0.0.1', port))
+  
+filename=input('Enter a file name: ')
+
+#send file name to the server
+s.send(filename.encode())
+
+#receive the contents from the server
+content=s.recv(1024)
+print(content.decode())
+
+#disconnect the client
+s.close()
+
+# disconnect the client
+s.close()
+
+OUTPUT:
+
+SERVER 
+C:\Users\admin\Documents>Python server.py
+Enter Message: Hello Brother
+CONNECTION FROM: ('127.0.0.1', 60820)
+File name received from the client message.bin
+File content sent to the client
+
+CLIENT 
+C:\Users\admin\Documents>Python client1.py
+Enter a file name: message.bin
+Hello Brother
