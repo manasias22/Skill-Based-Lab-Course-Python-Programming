@@ -1,8 +1,8 @@
 # Skill-Base-Lab-Course-Python-Programming
 
-Prerequisite: Knowledge of some programming language like C, Java 
+_Prerequisite: Knowledge of some programming language like C, Java_
  
-Lab Objectives:
+## Lab Objectives:
 
 1 Basics of Python programming 
 
@@ -11,7 +11,7 @@ Lab Objectives:
 3 Object Oriented Programming using Python 4 Web framework for developing 
 
  
-Lab Outcomes: At the end of the course, the students will be able to 
+## Lab Outcomes: At the end of the course, the students will be able to 
 
 1 To understand basic concepts in python. 
 
